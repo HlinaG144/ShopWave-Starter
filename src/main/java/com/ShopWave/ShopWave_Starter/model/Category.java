@@ -10,13 +10,11 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
-@Table(name = "products")
+@Table(name = "category")
 public class Category {
 
-    @Column(name = "category")
-    private String category;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,5 +22,8 @@ public class Category {
     @NotBlank(message = "Not blank")
     @Column(nullable = false)
     private String name;
+
+    @Column
+    private String description;
 
 }
