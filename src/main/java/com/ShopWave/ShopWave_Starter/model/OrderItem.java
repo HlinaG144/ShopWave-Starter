@@ -1,9 +1,9 @@
 package com.ShopWave.ShopWave_Starter.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jdk.jfr.Description;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Getter
 @Data
@@ -11,18 +11,20 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "category")
-public class Category {
+
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Not blank")
-    @Column(nullable = false)
-    private String name;
+    @ManyToOne
+    @Column
+    private String product;
 
     @Column
-    private String description;
+    private Integer quantity;
 
+    @Column
+    private BigDecimal unitPrice;
 }
