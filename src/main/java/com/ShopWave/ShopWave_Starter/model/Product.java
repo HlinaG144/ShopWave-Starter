@@ -1,3 +1,5 @@
+// Hlina Girum/ATE/3417/14
+
 package com.ShopWave.ShopWave_Starter.model;
 
 import jakarta.persistence.*;
@@ -45,5 +47,5 @@ public class Product {
     @CreationTimestamp
     @CreatedDate
     @Column
-    private LocalDateTime auto;
+    private LocalDateTime createdAt;
 }
