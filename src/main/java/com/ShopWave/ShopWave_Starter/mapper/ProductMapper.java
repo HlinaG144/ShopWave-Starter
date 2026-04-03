@@ -4,7 +4,9 @@ package com.ShopWave.ShopWave_Starter.mapper;
 
 import com.ShopWave.ShopWave_Starter.dto.ProductDTO;
 import com.ShopWave.ShopWave_Starter.model.Product;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductMapper {
     public ProductDTO toDTO(Product product){
         if (product == null)

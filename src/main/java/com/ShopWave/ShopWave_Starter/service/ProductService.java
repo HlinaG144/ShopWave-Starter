@@ -4,16 +4,20 @@ package com.ShopWave.ShopWave_Starter.service;
 
 import com.ShopWave.ShopWave_Starter.dto.CreateProductRequest;
 import com.ShopWave.ShopWave_Starter.dto.ProductDTO;
-import org.hibernate.query.Page;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.math.BigDecimal;
+import java.util.List;
 
 public interface ProductService {
-    private ProductDTO createProduct(CreateProductRequest request) {
-        return null;
-    }
 
-    private Page getAllProducts(Pageable pageable) {
-        return null;
-    }
+    ProductDTO createProduct(CreateProductRequest request);
+
+    Page<ProductDTO> getAllProducts(Pageable pageable);
+
+    ProductDTO getProductById(Long id);
+
+    List<ProductDTO> searchProducts(String keyword, BigDecimal maxPrice);
+
+    ProductDTO updateStock(Long id, int delta);
 }

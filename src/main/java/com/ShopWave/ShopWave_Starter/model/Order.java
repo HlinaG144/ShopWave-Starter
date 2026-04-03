@@ -7,9 +7,10 @@ import jakarta.validation.constraints.Positive;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Builder
@@ -23,7 +24,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String orderNumber;
 
 
@@ -45,15 +46,14 @@ public class Order {
     @Column(nullable = false)
     private OrderStatus status;
 
-    @Column
+    @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal totalAmount;
 
+    @Column(nullable = false,updatable = false)
     @CreationTimestamp
-    @CreatedDate
-    @Column
-    private LocalDateTime auto;
+    private LocalDateTime createdAt;
 
-    @OneToMany
     @Column
-    private OrderItem items;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> items = new ArrayList<>();
 }

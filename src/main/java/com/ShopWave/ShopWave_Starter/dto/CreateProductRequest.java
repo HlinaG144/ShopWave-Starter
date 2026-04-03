@@ -4,7 +4,6 @@ package com.ShopWave.ShopWave_Starter.dto;
 
 import lombok.Builder;
 import lombok.Data;
-
 import java.math.BigDecimal;
 
 @Builder

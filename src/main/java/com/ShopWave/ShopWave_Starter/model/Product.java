@@ -8,8 +8,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -19,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -32,20 +30,19 @@ public class Product {
     @Column
     private String description;
 
-    @Positive(message ="")
+    @Positive
     @Column
     private BigDecimal price;
 
-    @Column
     @Min(0)
+    @Column(nullable = false)
     private Integer stock;
 
-    @ManyToOne
-    @Column
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @CreationTimestamp
-    @CreatedDate
-    @Column
+    @Column(nullable = false,updatable = false)
     private LocalDateTime createdAt;
 }
